@@ -1,0 +1,22 @@
+name: UniqueIdUtils
+main: _64FF00\UniqueIdUtils\UniqueIdUtils
+version: "1.0.0"
+api: [1.11.0]
+load: STARTUP
+author: 64FF00
+website: https://github.com/PurePlugins/UniqueIdUtils
+commands:
+  uuid:
+    description: Allows you to check a unique id of a player or your server.
+permissions:
+  uuidutils:
+    description: "UniqueIdUtils by 64FF00"
+    children:
+      uuidutils.info:
+        description: "Allows you to get current UniqueIdUtils information. #64FF00"
+      uuidutils.machine:
+        description: "Allows you to check your machine UUID"
+      uuidutils.player:
+        description: "Allows you to check a player's UUID"
+      uuidutils.server:
+        description: "Allows you to check your server UUID"
