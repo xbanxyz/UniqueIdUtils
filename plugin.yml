@@ -12,6 +12,8 @@ permissions:
   uuidutils:
     description: "UniqueIdUtils by 64FF00"
     children:
+      uuidutils.getp:
+        description: "Allows you to get a player by UUID."
       uuidutils.info:
         description: "Allows you to get current UniqueIdUtils information. #64FF00"
       uuidutils.machine:
