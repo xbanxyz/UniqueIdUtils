@@ -28,7 +28,14 @@ use pocketmine\utils\Utils;
 */
 
 class UniqueIdUtils extends PluginBase implements CommandExecutor
-{   
+{
+    /**
+     * @param CommandSender $sender
+     * @param Command $cmd
+     * @param string $label
+     * @param array $args
+     * @return bool
+     */
     public function onCommand(CommandSender $sender, Command $cmd, $label, array $args)
 	{
         if(!isset($args[0]))
@@ -59,20 +66,17 @@ class UniqueIdUtils extends PluginBase implements CommandExecutor
                     
                     foreach($this->getServer()->getOnlinePlayers() as $player)
                     {
-                        if($player->getUniqueId() === $args[1])
-                        {
-                            $tmp = $player;
-                        }
+                        if($player->getUniqueId()->toString() === $args[1]) $match = $player;
                     }
                     
-                    if($tmp == null || !$tmp instanceof Player)
+                    if($match == null || !$match instanceof Player)
                     {
                         $sender->sendMessage(TextFormat::RED . "No matching player found.");
                         
                         break;
                     }
                     
-                    $sender->sendMessage($args[1] . " -> " . $tmp->getName());
+                    $sender->sendMessage(TextFormat::BLUE . "Match found / Player " . $match->getName() . "'s UUID is: " . $args[1]);
                 }
                 
                 break;
@@ -103,12 +107,12 @@ class UniqueIdUtils extends PluginBase implements CommandExecutor
                 {
                     if(!$sender instanceof ConsoleCommandSender)
                     {
-                        $sender->sendMessage(TextFormat::RED . "This command can only be run on the console.");
+                        $sender->sendMessage(TextFormat::RED . "This command should be only run on the console.");
                         
                         break;
                     }
                     
-                    $sender->sendMessage("Machine UUID: " . Utils::getMachineUniqueId());
+                    $sender->sendMessage(TextFormat::BLUE . "Machine UUID: " . Utils::getMachineUniqueId()->toString());
                 }
                 
                 break;
@@ -137,7 +141,7 @@ class UniqueIdUtils extends PluginBase implements CommandExecutor
                         break;
                     }
                     
-                    $sender->sendMessage("Player " . $player->getName() . "'s UUID is: " . $player->getUniqueId());
+                    $sender->sendMessage(TextFormat::BLUE . "Player " . $player->getName() . "'s UUID is: " . $player->getUniqueId()->toString());
                 }
                 
                 break;
@@ -152,12 +156,12 @@ class UniqueIdUtils extends PluginBase implements CommandExecutor
                 {
                     if(!$sender instanceof ConsoleCommandSender)
                     {
-                        $sender->sendMessage(TextFormat::RED . "This command can only be run on the console.");
+                        $sender->sendMessage(TextFormat::RED . "This command should be only run on the console.");
                         
                         break;
                     }
                     
-                    $sender->sendMessage("Server UUID: " . $this->getServer()->getServerUniqueId());
+                    $sender->sendMessage(TextFormat::BLUE . "Server UUID: " . $this->getServer()->getServerUniqueId()->toString());
                 }
                 
                 break;
